@@ -48,7 +48,7 @@
  */
 class Phake_PHPUnit_VerifierResultConstraint extends PHPUnit_Framework_Constraint
 {
-	public function evaluate($other) 
+	public function matches($other)
 	{
 		if (!$other instanceof Phake_CallRecorder_VerifierResult)
 		{
@@ -70,6 +70,11 @@ class Phake_PHPUnit_VerifierResultConstraint extends PHPUnit_Framework_Constrain
 		}
 
 		return $other->getFailureDescription();
+	}
+
+	protected function failureDescription($other)
+	{
+		return $this->customFailureDescription($other, null, null);
 	}
 }
 ?>
