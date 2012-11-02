@@ -81,7 +81,7 @@ class Phake_String_ConverterTest extends PHPUnit_Framework_TestCase
 
 	public function testResourceConversion()
 	{
-		$dir = opendir('/tmp');
+		$dir = opendir(sys_get_temp_dir());
 		try
 		{
 			$this->assertEquals('<resource>', $this->converter->convertToString($dir));
