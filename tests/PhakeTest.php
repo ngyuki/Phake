@@ -1150,6 +1150,25 @@ class PhakeTest extends PHPUnit_Framework_TestCase
 
 	    $this->assertTrue($memcache->set('key', 'value'));
 	}
+	
+	public function testCallOrderInObjectFailsWithPHPUnit()
+	{
+		Phake::setClient(Phake::CLIENT_PHPUNIT);
+		
+		$mock = Phake::mock('PhakeTest_MockedClass');
+		
+		$mock->foo();
+		$mock->callInnerFunc();
+		$mock->fooWithReturnValue();
+		
+		$this->setExpectedException('PHPUnit_Framework_ExpectationFailedException');
+		
+		Phake::inOrder(
+			Phake::verify($mock)->foo(),
+			Phake::verify($mock)->fooWithReturnValue(),
+			Phake::verify($mock)->callInnerFunc()
+		);
+	}
 }
 
 ?>
