@@ -1,9 +1,9 @@
 {
-    "name": "phake/phake",
+    "name": "ngyuki/phake",
     "type": "library",
     "description": "The Phake mock testing library",
     "keywords": ["testing", "mock"],
-    "homepage": "https://github.com/mlively/Phake",
+    "homepage": "https://github.com/ngyuki/Phake",
     "license": "BSD",
     "authors": [
         {
