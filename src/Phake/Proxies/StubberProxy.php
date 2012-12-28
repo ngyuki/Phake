@@ -95,6 +95,16 @@ class Phake_Proxies_StubberProxy
 		$binder = new Phake_Stubber_AnswerBinder($this->obj, $matcher, $this->mockReader);
 		return new Phake_Proxies_AnswerBinderProxy($binder);
 	}
+	
+	/**
+	 * @param string $method
+	 * @return Phake_Proxies_AnswerBinderProxy
+	 */
+	public function method($method)
+	{
+		$args = array_slice(func_get_args(), 1);
+		return $this->__call($method, $args);
+	}
 }
 
 ?>
